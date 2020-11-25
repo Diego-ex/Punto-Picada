@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "74748213233",
+    "firebase_url": "https://punto-picada.firebaseio.com",
+    "project_id": "punto-picada",
+    "storage_bucket": "punto-picada.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74748213233:android:40ce0050e8a48d14f07650",
+        "android_client_info": {
+          "package_name": "com.poblete.punto_picada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74748213233-2vja215qa5ill0fo0oq02vcbphn4snds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNBmGuFR6riVC6TZ8CaDmx9-Q9sqqIJ9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74748213233-2vja215qa5ill0fo0oq02vcbphn4snds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

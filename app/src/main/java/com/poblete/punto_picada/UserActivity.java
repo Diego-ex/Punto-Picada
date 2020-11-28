@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class UserActivity extends AppCompatActivity {
 
     TextView titleTextView, emailTextView;
-    MaterialButton btnLogOut;
+    MaterialButton btnLogOut, btnGoMaps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class UserActivity extends AppCompatActivity {
         titleTextView = findViewById(R.id.titleTextView);
         emailTextView = findViewById(R.id.emailTextView);
         btnLogOut = findViewById(R.id.btnLogOut);
+        btnGoMaps = findViewById(R.id.btnGoMaps);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null){
@@ -37,6 +38,14 @@ public class UserActivity extends AppCompatActivity {
                 Intent intent = new Intent(UserActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        btnGoMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gMap = new Intent(UserActivity.this, MapsActivity.class);
+                startActivity(gMap);
             }
         });
 

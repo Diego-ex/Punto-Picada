@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/loginImageView"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:src="@drawable/logo"
         android:transitionName="logoImageTransition"
         android:layout_gravity="center"/>
@@ -24,7 +24,7 @@
         android:fontFamily="@font/trade_winds"
         android:text="Bienvenido a Punto Picada!"
         android:textAlignment="center"
-        android:textSize="40sp"
+        android:textSize="38sp"
         android:textStyle="bold"
         android:transitionName="bienvenidoTransition"/>
 
@@ -33,20 +33,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Inicia sesión para continuar"
-        android:textSize="28sp"
+        android:textSize="26sp"
         android:fontFamily="@font/advent_pro_medium"
         android:transitionName="iniciaSesionTransition"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
         android:orientation="vertical">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/usuarioTextField"
             android:transitionName="emailInputTextTransition"
             android:hint="E-mail"
@@ -61,7 +61,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="10dp"
             android:id="@+id/contrasenaTextField"
             android:transitionName="passwordInputTextTransition"
             android:hint="Contraseña"
@@ -80,7 +80,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textColor="@color/colorAccent"
             android:fontFamily="@font/advent_pro_medium"
             android:layout_gravity="end"
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:text="Inicio"
             android:layout_marginTop="12dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="20dp"
             android:transitionName="btnSignInTransition"/>
 
         <TextView
@@ -102,7 +102,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textColor="@color/colorAccent"
             android:fontFamily="@font/advent_pro_medium"
             android:layout_gravity="center"

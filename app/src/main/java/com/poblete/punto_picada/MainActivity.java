@@ -1,5 +1,7 @@
 package com.poblete.punto_picada;
-
+/*
+    Version by Draigh on 25/11/2020.
+ */
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Punto Picada</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

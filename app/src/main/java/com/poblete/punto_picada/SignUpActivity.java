@@ -49,19 +49,8 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-    //Referencias
-        signUpImageView = findViewById(R.id.signUpImageView);
-        bienvenidoLabel = findViewById(R.id.bienvenidoLabel);
-        continuarLabel = findViewById(R.id.continuarLabel);
-        nameTextField = findViewById(R.id.nameTextField);
-        usuarioSignUpTextField = findViewById(R.id.usuarioSignUpTextField);
-        contrasenaTextField = findViewById(R.id.contrasenaTextField);
-        inicioSesion = findViewById(R.id.inicioSesion);
-        nuevoUsuario = findViewById(R.id.nuevoUsuario);
-        nameEditText = findViewById(R.id.nameEditText);
-        emailEditText = findViewById(R.id.emailEditText);
-        passwordEditText = findViewById(R.id.passwordEditText);
-        confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
+        //referencias
+        referencias();
 
         nuevoUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +68,22 @@ public class SignUpActivity extends AppCompatActivity {
         connectFirebaseDataBase();
 
     }//Fin del onCreate (para no perder de vista)
+
+    public void referencias(){
+        //Referencias
+        signUpImageView = findViewById(R.id.signUpImageView);
+        bienvenidoLabel = findViewById(R.id.bienvenidoLabel);
+        continuarLabel = findViewById(R.id.continuarLabel);
+        nameTextField = findViewById(R.id.nameTextField);
+        usuarioSignUpTextField = findViewById(R.id.usuarioSignUpTextField);
+        contrasenaTextField = findViewById(R.id.contrasenaTextField);
+        inicioSesion = findViewById(R.id.inicioSesion);
+        nuevoUsuario = findViewById(R.id.nuevoUsuario);
+        nameEditText = findViewById(R.id.nameEditText);
+        emailEditText = findViewById(R.id.emailEditText);
+        passwordEditText = findViewById(R.id.passwordEditText);
+        confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText);
+    }
 
     public void connectFirebaseDataBase(){
         mAuth = FirebaseAuth.getInstance();
@@ -137,14 +142,14 @@ public class SignUpActivity extends AppCompatActivity {
                         //si se registró con éxito
                         if (task.isSuccessful()){
 
-                            Map<String, Object> map = new HashMap<>();
-                            map.put("Nombre", name);
-                            map.put("E-mail", email);
-                            map.put("Contraseña", password);
+                            Map<String, Object> UserMap = new HashMap<>();
+                            UserMap.put("Nombre", name);
+                            UserMap.put("E-mail", email);
+                            UserMap.put("Contraseña", password);
 
                             String id = mAuth.getCurrentUser().getUid();
 
-                            rDatabase.child("Usuarios").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            rDatabase.child("Usuarios").child(id).setValue(UserMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 //si los datos se crearon correctamente
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task2) {
@@ -163,17 +168,12 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
-
     /*public void limpiarForm(){
         nameEditText.setText("");
         emailEditText.setText("");
         passwordEditText.setText("");
         confirmPasswordEditText.setText("");
     }*/
-
     @Override
     public void onBackPressed(){
         //cuando presionen la flecha atras

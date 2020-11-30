@@ -2,6 +2,7 @@ package com.poblete.punto_picada;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -14,6 +15,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private float lat, lon;
+    private String nom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        //
+        userGetIntent();
     }
 
     /**
@@ -37,10 +42,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        LatLng userLugar = new LatLng(this.lat,this.lon);
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(userLugar).title(nom));
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLugar,15));
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+        /*LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+         */
+    }
+
+    public void userGetIntent(){
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        lat = bundle.getFloat("Latitud");
+        lon = bundle.getFloat("Longitud");
+        nom = bundle.getString("Nombre");
     }
 }

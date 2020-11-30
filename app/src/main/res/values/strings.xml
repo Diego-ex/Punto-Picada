@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Punto Picada</string>
     <string name="title_activity_maps">Map</string>
+
+    <!-- Activity User -->
+    <string name="boton_mapa">Explorar</string>
+    <string name="boton_logout">LogOut</string>
+    <string name="titleTextView">Punto Picada</string>
+
+
 </resources>

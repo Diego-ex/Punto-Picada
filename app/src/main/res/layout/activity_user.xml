@@ -11,6 +11,7 @@
         android:layout_width="110dp"
         android:layout_height="46dp"
         android:layout_marginTop="76dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -21,6 +22,7 @@
         android:layout_width="100dp"
         android:layout_height="44dp"
         android:layout_marginTop="76dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -57,6 +59,7 @@
         android:layout_width="117dp"
         android:layout_height="41dp"
         android:layout_marginTop="16dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.062"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -67,6 +70,7 @@
         android:layout_width="117dp"
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -91,10 +95,10 @@
         android:id="@+id/btnGoMaps"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/bmap"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintHorizontal_bias="0.786"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
@@ -117,6 +121,7 @@
         android:layout_marginTop="65dp"
         android:text="Prueba"
         android:textColor="@color/design_default_color_on_secondary"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/restLocalesButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,12 +131,11 @@
         android:id="@+id/restLocalesButton"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="64dp"
         android:text="@string/boton_listaMarkers"
         android:textColor="@color/design_default_color_on_secondary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/agregarLocalesButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailTextView" />
 
     <com.google.android.material.button.MaterialButton
@@ -157,6 +161,21 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button3"
         app:layout_constraintTop_toBottomOf="@+id/restLocalesButton" />
+
+    <TextView
+        android:id="@+id/explorarMapTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/advent_pro_medium"
+        android:text="@string/explorarMapTextView"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

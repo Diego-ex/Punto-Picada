@@ -8,6 +8,7 @@
     <string name="titleTextView">Punto Picada</string>
     <string name="boton_listaMarkers">Lista P.P</string>
     <string name="picadaLista">Puntos Picada</string>
+    <string name="explorarMapTextView">Explorar Mapa</string>
 
 
 </resources>

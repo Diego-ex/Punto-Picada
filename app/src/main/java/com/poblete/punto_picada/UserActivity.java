@@ -51,8 +51,8 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         userEmailPerfil();
         //Inicializando el objeto fusedLocation
         fused = LocationServices.getFusedLocationProviderClient(UserActivity.this);
-        //latitudEditText.setEnabled(false);
-        //longitudEditText.setEnabled(false);
+        latitudEditText.setEnabled(false);
+        longitudEditText.setEnabled(false);
         coordenadasUser();
         connectFirebaseDataBase();
 

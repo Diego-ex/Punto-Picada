@@ -1,5 +1,9 @@
 package com.poblete.punto_picada;
-
+/*
+    Version by Draigh on 25/11/2020.
+ */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -19,26 +23,77 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.poblete.punto_picada.entidades.Marcador;
 
-public class UserActivity extends AppCompatActivity {
+import java.util.UUID;
+
+public class UserActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
     TextView titleTextView, emailTextView;
-    MaterialButton btnLogOut, btnGoMaps, agregarLocalesButton;
+    MaterialButton btnLogOut, btnGoMaps, agregarLocalesButton, restLocalesButton;
     FusedLocationProviderClient fused;
     EditText latitudEditText, longitudEditText, nomEditText, descEditText;
 
     FirebaseDatabase database;
     DatabaseReference rDatabase;
-    private double latitud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        //
+        reference();
+        //
+        userEmailPerfil();
+        //Inicializando el objeto fusedLocation
+        fused = LocationServices.getFusedLocationProviderClient(UserActivity.this);
+        //latitudEditText.setEnabled(false);
+        //longitudEditText.setEnabled(false);
+        coordenadasUser();
+        connectFirebaseDataBase();
 
+        btnLogOut.setOnClickListener(this);
+        btnGoMaps.setOnClickListener(this);
+        agregarLocalesButton.setOnClickListener(this);
+        restLocalesButton.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnGoMaps:
+                miUbi();
+                break;
+            case R.id.agregarLocalesButton:
+                agregarMarcador();
+                break;
+            case R.id.restLocalesButton:
+                listMarkers();
+                break;
+            case R.id.btnLogOut:
+                logOut();
+                break;
+        }
+    }
+
+    public void listMarkers(){
+        Intent listIntent = new Intent(UserActivity.this, ListMarkersActivity.class);
+        startActivity(listIntent);
+    }
+
+    public void logOut(){
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(UserActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void reference(){
         titleTextView = findViewById(R.id.titleTextView);
         emailTextView = findViewById(R.id.emailTextView);
         btnLogOut = findViewById(R.id.btnLogOut);
@@ -49,61 +104,8 @@ public class UserActivity extends AppCompatActivity {
         descEditText = findViewById(R.id.descEditText);
         //boton para agregar
         agregarLocalesButton = findViewById(R.id.agregarLocalesButton);
-
-        userEmailPerfil();
-        //Inicializando el objeto fusedLocation
-        fused = LocationServices.getFusedLocationProviderClient(UserActivity.this);
-
-        //latitudEditText.setEnabled(false);
-        //longitudEditText.setEnabled(false);
-
-        coordenadasUser();
-        connectFirebaseDataBase();
-
-        btnLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(UserActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        btnGoMaps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                miUbi();
-            }
-        });
-
-        agregarLocalesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                agregarMarcador();
-            }
-        });
-
+        restLocalesButton = findViewById(R.id.restLocalesButton);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void connectFirebaseDataBase(){
         database = FirebaseDatabase.getInstance();
@@ -120,7 +122,7 @@ public class UserActivity extends AppCompatActivity {
 
     public void miUbi(){
         float lat, lon;
-        String nom = "Yo";//para agregar otro marcador cambia el nombre dg
+        String nom = "Yo";//para agregar otro marcador cambia
 
         lat = Float.parseFloat(latitudEditText.getText().toString());
         lon = Float.parseFloat(longitudEditText.getText().toString());
@@ -162,12 +164,28 @@ public class UserActivity extends AppCompatActivity {
     }
 
     public void agregarMarcador(){
+        //id random para el marcador
+        String id = UUID.randomUUID().toString();
+        double latitud = Double.parseDouble(latitudEditText.getText().toString().trim());
+        double longitud = Double.parseDouble(longitudEditText.getText().toString().trim());
+        String name = nomEditText.getText().toString().trim();
+        String descripcion = descEditText.getText().toString().trim();
 
+        Marcador marcador = new Marcador(id, latitud, longitud, name, descripcion);
+        insertarMarcador(marcador);
+
+    }
+
+    public void insertarMarcador(Marcador m){
+        rDatabase.child("Marcadores").child(m.getId()).setValue(m, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                msjToast("Marcador creado");
+            }
+        });
     }
 
     public void msjToast(String mensaje){
         Toast.makeText(this,mensaje,Toast.LENGTH_LONG).show();
     }
-
-
 }

@@ -29,11 +29,19 @@ public class MainActivity extends AppCompatActivity {
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         //Referencias
+        referencias();
+        //si el usuario ya inicio sesion
+        sesionIniciada();
+        
+    }//Fin del onCreate (para no perder de vista)
+
+    public void referencias(){
         puntopicadaTextView = findViewById(R.id.puntopicadaTextView);
         byTextView = findViewById(R.id.byTextView);
         DevTextView = findViewById(R.id.DevTextView);
         logoImageView = findViewById(R.id.logoImageView);
-        //si el usuario ya inicio sesion
+    }
+    public void sesionIniciada(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null){
             Intent intent = new Intent(MainActivity.this, UserActivity.class);
@@ -43,9 +51,7 @@ public class MainActivity extends AppCompatActivity {
             //Animaciones
             animationTimeDelay(); //despues de 3 seg pasa al loginActivity
         }
-        
-    }//Fin del onCreate (para no perder de vista)
-
+    }
     public void animationTimeDelay(){
         //Agregar animaciones
         Animation animacion1 = AnimationUtils.loadAnimation(this,R.anim.desplazamiento_arriba);

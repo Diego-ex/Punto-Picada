@@ -6,6 +6,8 @@
     <string name="boton_mapa">Explorar</string>
     <string name="boton_logout">LogOut</string>
     <string name="titleTextView">Punto Picada</string>
+    <string name="boton_listaMarkers">Lista P.P</string>
+    <string name="picadaLista">Puntos Picada</string>
 
 
 </resources>

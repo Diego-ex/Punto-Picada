@@ -1,5 +1,8 @@
 package com.poblete.punto_picada;
-
+/*
+    Version by Draigh on 25/11/2020.
+ */
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
@@ -10,11 +13,20 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private DatabaseReference databaseReference;
     private float lat, lon;
     private String nom;
 
@@ -28,6 +40,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         //
         userGetIntent();
+        //
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     /**
@@ -42,20 +56,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        positionUser();
+
+    }
+
+    public void positionUser(){
         LatLng userLugar = new LatLng(this.lat,this.lon);
-        // Add a marker in Sydney and move the camera
+        // user position
         mMap.addMarker(new MarkerOptions().position(userLugar).title(nom));
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLugar,15));
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-
-        /*LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-         */
     }
-
     public void userGetIntent(){
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();

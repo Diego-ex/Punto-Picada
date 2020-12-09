@@ -4,11 +4,27 @@
 
     <!-- Activity User -->
     <string name="boton_mapa">Explorar</string>
-    <string name="boton_logout">LogOut</string>
+    <string name="boton_logout">Salir</string>
     <string name="titleTextView">Punto Picada</string>
     <string name="boton_listaMarkers">Lista P.P</string>
     <string name="picadaLista">Puntos Picada</string>
     <string name="explorarMapTextView">Explorar Mapa</string>
+    <string name="valorarButton">Valorar App</string>
+    <string name="rrssButton">Redes Sociales</string>
+    <string name="tituloValorar">Punto Picada</string>
+    <string name="sendMailButton">Enviar</string>
+    <string name="questValora">¿Te gustó nuestra app? ¿Cuánto?</string>
+    <string name="listalocales">Ver Puntos Picada</string>
+    <string name="valorarText">Valoranos y envía tú opinión</string>
+    <string name="redesText">Síguenos</string>
 
+    <string name="valoraLaApp">Agradecemos por la atención que prestas a nuestra aplicación. Seguiremos trabajando para mejorar con cada comentario o sugerencia que nos envíes. Gracias por elegir Punto Picada.</string>
+    <string name="imagefb">Pagina de facebook</string>
+    <string name="imageinst">Cuenta de instagram App</string>
+    <string name="by">By</string>
+    <string name="draigh_ao10">Draigh-AO10</string>
+    <string name="punto_picada">Punto Picada</string>
+    <string name="logoContent">logoSplash</string>
+    <string name="redesTextView3">Sigue nuestras Redes Sociales</string>
 
 </resources>

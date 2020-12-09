@@ -1,5 +1,7 @@
 package com.poblete.punto_picada;
-
+/*
+    Version by Draigh on 25/11/2020.
+ */
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;

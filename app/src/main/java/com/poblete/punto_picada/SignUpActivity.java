@@ -199,6 +199,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void msjToast(String mensaje){
-        Toast.makeText(this,mensaje,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplication(),mensaje,Toast.LENGTH_LONG).show();
     }
 }

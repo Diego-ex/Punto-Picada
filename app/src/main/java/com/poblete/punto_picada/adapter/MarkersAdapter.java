@@ -1,5 +1,7 @@
 package com.poblete.punto_picada.adapter;
-
+/*
+    Version by Draigh on 25/11/2020.
+ */
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

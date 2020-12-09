@@ -14,6 +14,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +34,8 @@ import java.util.UUID;
 public class UserActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
-    TextView titleTextView, emailTextView;
-    MaterialButton btnLogOut, btnGoMaps, agregarLocalesButton, restLocalesButton;
+    TextView titleTextView, emailTextView, listalocales, valorarTextv, redesTextv, salirTextView;
+    MaterialButton btnLogOut, btnGoMaps, agregarLocalesButton, restLocalesButton, valorarButton, rrssButton;
     FusedLocationProviderClient fused;
     EditText latitudEditText, longitudEditText, nomEditText, descEditText;
 
@@ -51,15 +52,14 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         userEmailPerfil();
         //Inicializando el objeto fusedLocation
         fused = LocationServices.getFusedLocationProviderClient(UserActivity.this);
+        //
         latitudEditText.setEnabled(false);
         longitudEditText.setEnabled(false);
+        //
         coordenadasUser();
         connectFirebaseDataBase();
-
-        btnLogOut.setOnClickListener(this);
-        btnGoMaps.setOnClickListener(this);
-        agregarLocalesButton.setOnClickListener(this);
-        restLocalesButton.setOnClickListener(this);
+        //
+        clickButton();
 
     }
 
@@ -69,11 +69,17 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnGoMaps:
                 miUbi();
                 break;
-            case R.id.agregarLocalesButton:
+            case R.id.agregarLocalesButton://invisible
                 agregarMarcador();
                 break;
             case R.id.restLocalesButton:
                 listMarkers();
+                break;
+            case R.id.valorarButton:
+                ratingApp();
+                break;
+            case R.id.rrssButton:
+                socialMedia();
                 break;
             case R.id.btnLogOut:
                 logOut();
@@ -84,6 +90,16 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     public void listMarkers(){
         Intent listIntent = new Intent(UserActivity.this, ListMarkersActivity.class);
         startActivity(listIntent);
+    }
+
+    public void ratingApp(){
+        Intent valorarIntent = new Intent(UserActivity.this, RatingActivity.class);
+        startActivity(valorarIntent);
+    }
+
+    public void socialMedia(){
+        Intent socialIntent = new Intent(UserActivity.this, SocialActivity.class);
+        startActivity(socialIntent);
     }
 
     public void logOut(){
@@ -102,9 +118,24 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         longitudEditText = findViewById(R.id.longitudEditText);
         nomEditText = findViewById(R.id.nomEditText);
         descEditText = findViewById(R.id.descEditText);
+        listalocales = findViewById(R.id.listalocales);
+        valorarTextv = findViewById(R.id.valorarTextv);
+        redesTextv = findViewById(R.id.redesTextv);
+        salirTextView = findViewById(R.id.salirTextView);
         //boton para agregar
         agregarLocalesButton = findViewById(R.id.agregarLocalesButton);
         restLocalesButton = findViewById(R.id.restLocalesButton);
+        valorarButton = findViewById(R.id.valorarButton);
+        rrssButton = findViewById(R.id.rrssButton);
+    }
+
+    public void clickButton(){
+        btnLogOut.setOnClickListener(this);
+        btnGoMaps.setOnClickListener(this);
+        agregarLocalesButton.setOnClickListener(this);
+        restLocalesButton.setOnClickListener(this);
+        valorarButton.setOnClickListener(this);
+        rrssButton.setOnClickListener(this);
     }
 
     public void connectFirebaseDataBase(){
@@ -174,7 +205,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         Marcador marcador = new Marcador(id, latitud, longitud, name, descripcion);
         insertarMarcador(marcador);
 
-    }
+    } // Para futuras actualizaciones de la app
 
     public void insertarMarcador(Marcador m){
         rDatabase.child("Marcadores").child(m.getId()).setValue(m, new DatabaseReference.CompletionListener() {
@@ -183,7 +214,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 msjToast("Marcador creado");
             }
         });
-    }
+    } // Para futuras actualizaciones de la app
 
     public void msjToast(String mensaje){
         Toast.makeText(this,mensaje,Toast.LENGTH_LONG).show();

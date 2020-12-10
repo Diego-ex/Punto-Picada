@@ -33,7 +33,6 @@ import java.util.UUID;
 
 public class UserActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
     TextView titleTextView, emailTextView, listalocales, valorarTextv, redesTextv, salirTextView;
     MaterialButton btnLogOut, btnGoMaps, agregarLocalesButton, restLocalesButton, valorarButton, rrssButton;
     FusedLocationProviderClient fused;
@@ -56,7 +55,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         latitudEditText.setEnabled(false);
         longitudEditText.setEnabled(false);
         //
-        coordenadasUser();
+        //coordenadasUser();
         connectFirebaseDataBase();
         //
         clickButton();
@@ -85,6 +84,20 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 logOut();
                 break;
         }
+    }
+
+    public void miUbi(){
+        /*float lat, lon;
+        String nom = "Yo";//para agregar otro marcador cambia
+
+        lat = Float.parseFloat(latitudEditText.getText().toString());
+        lon = Float.parseFloat(longitudEditText.getText().toString());*/
+
+        Intent gMap = new Intent(UserActivity.this, MapsActivity.class);
+        /*gMap.putExtra("Latitud", lat);
+        gMap.putExtra("Longitud", lon);
+        gMap.putExtra("Nombre", nom);*/
+        startActivity(gMap);
     }
 
     public void listMarkers(){
@@ -151,33 +164,28 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void miUbi(){
-        float lat, lon;
-        String nom = "Yo";//para agregar otro marcador cambia
 
-        lat = Float.parseFloat(latitudEditText.getText().toString());
-        lon = Float.parseFloat(longitudEditText.getText().toString());
 
-        Intent gMap = new Intent(UserActivity.this, MapsActivity.class);
-        gMap.putExtra("Latitud", lat);
-        gMap.putExtra("Longitud", lon);
-        gMap.putExtra("Nombre", nom);
-        startActivity(gMap);
-    }
-
-    public void coordenadasUser(){
+    /*public void coordenadasUser(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(UserActivity.this,
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            ActivityCompat.requestPermissions(UserActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+
+            //ActivityCompat.requestPermissions(UserActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)){
+                //
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},1);
+            }
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
+                //
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+            }
+
+            return;
         }
         fused.getLastLocation().addOnSuccessListener(UserActivity.this, new OnSuccessListener<Location>() {
             @Override
@@ -192,7 +200,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
-    }
+    }*/
 
     public void agregarMarcador(){
         //id random para el marcador
